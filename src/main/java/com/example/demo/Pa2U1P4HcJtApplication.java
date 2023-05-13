@@ -13,10 +13,13 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
 		
 		
 		System.out.println("Mi primer proyecto");
+		/* Spring Framework, permite la construccion
+		 *  y desarrollo de aplcaciones empresariales 
+		 *  basadas en Spring
+		 */
 	}
 
 }
