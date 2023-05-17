@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 
+	@Autowired
+	private Profesor profe2;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P4HcJtApplication.class, args);
 	}
@@ -24,6 +27,8 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 		 *  basadas en Spring
 		 */
 		
+		
+		
 		Profesor profesor= new Profesor();
 		profesor.setApellido("Coyago");
 		profesor.setCedula("17555");
@@ -32,14 +37,23 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 		
 		
 		System.out.println(profesor);
+		profesor.setApellido("Velez");
+		System.out.println(profesor.getApellido());
 		
+		System.out.println(profe2);
+		profe2.setApellido("toscano");
+		profe2.setApellido("");
+		System.out.println(profe2.getApellido());
 		
+		Profesor profe3;
 		
+		profe3 = profesor;
+		System.out.println(profe3);
+		profesor.setApellido("V");
+		System.out.println(profe3);
 		
-		
-		
-		
-		
+		MatriculaCalculo mat =  new MatriculaCalculo();
+		mat.realizarMatricula("1");
 	}
 
 }
