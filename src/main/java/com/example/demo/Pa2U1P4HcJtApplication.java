@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.banco.repository.modelo.Cuenta;
 import com.example.demo.banco.service.CuentaService;
+import com.example.demo.banco.service.TransferenciaService;
+import com.example.demo.banco.service.TransferenciaServiceImpl;
 import com.example.demo.repository.modelo.Estudiante;
 import com.example.demo.service.EstudianteService;
 
@@ -19,6 +22,9 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CuentaService cuentaService;
+	
+	@Autowired
+	private TransferenciaService transferenciaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P4HcJtApplication.class, args);
@@ -30,12 +36,31 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 		Cuenta cuenta1 = new Cuenta();
 		Cuenta cuenta2 = new Cuenta();
 		
-		cuenta1.setCedulaPropietario(null);
-		cuenta1.setNumero(null);
-		cuenta1.setSaldo(null);
-		cuenta1.setTipo(null);
+		//c1
+		cuenta1.setCedulaPropietario("1234");
+		cuenta1.setFechaApertura(LocalDateTime.now());
+		cuenta1.setNumero("5678");
+		cuenta1.setSaldo(new BigDecimal(200));
+		cuenta1.setTipo("A");
+		
+		//c2
+		cuenta2.setCedulaPropietario("0987");
+		cuenta2.setFechaApertura(LocalDateTime.now());
+		cuenta2.setNumero("7890");
+		cuenta2.setSaldo(new BigDecimal(100));
+		cuenta2.setTipo("A");
+		
+		//insertar
+		this.cuentaService.guardar(cuenta1);
+		this.cuentaService.guardar(cuenta2);	
 			
-			
+		
+		this.transferenciaService.realizar("1234", "0987", new BigDecimal(10));
+
+		System.out.println("saldo origen"+	this.cuentaService.buscarNumero("0987").getSaldo());
+		System.out.println("saldo destino"+	this.cuentaService.buscarNumero("1234").getSaldo());
+
+		
 		
 		
 	}
