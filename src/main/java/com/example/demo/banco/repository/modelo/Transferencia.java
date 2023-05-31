@@ -3,7 +3,7 @@ package com.example.demo.banco.repository.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Trasferencia {
+public class Transferencia {
 	
 	
 	private String numero;

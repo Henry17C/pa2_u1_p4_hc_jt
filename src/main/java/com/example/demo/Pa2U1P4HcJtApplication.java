@@ -5,12 +5,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.banco.repository.modelo.Cuenta;
+import com.example.demo.banco.repository.modelo.Transferencia;
 import com.example.demo.banco.service.CuentaService;
+import com.example.demo.banco.service.MontoDebitarService;
 import com.example.demo.banco.service.TransferenciaService;
 import com.example.demo.banco.service.TransferenciaServiceImpl;
 import com.example.demo.repository.modelo.Estudiante;
@@ -25,6 +28,9 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 	
 	@Autowired
 	private TransferenciaService transferenciaService;
+
+	
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P4HcJtApplication.class, args);
@@ -55,13 +61,17 @@ public class Pa2U1P4HcJtApplication implements CommandLineRunner{
 		this.cuentaService.guardar(cuenta2);	
 			
 		
-		this.transferenciaService.realizar("1234", "0987", new BigDecimal(10));
+		this.transferenciaService.realizar("5678", "7890", new BigDecimal(10));
 
-		System.out.println("saldo origen"+	this.cuentaService.buscarNumero("0987").getSaldo());
-		System.out.println("saldo destino"+	this.cuentaService.buscarNumero("1234").getSaldo());
-
-		
-		
+		System.out.println("saldo origen: "+	this.cuentaService.buscarNumero("5678").getSaldo());
+		System.out.println("saldo destino: "+	this.cuentaService.buscarNumero("7890").getSaldo());
+/*
+		System.out.println("Estado de cuenta");
+		List<Transferencia> todos= this.transferenciaService.estadoCuenta();
+		for(Transferencia trans: todos) {
+			System.out.println(trans);
+		}
+		*/
 		
 	}
 

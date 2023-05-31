@@ -5,38 +5,35 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.banco.repository.modelo.Trasferencia;
+import com.example.demo.banco.repository.modelo.Transferencia;
 
 
 @Repository
-public class TransferenciaRepositoryImpl implements TrasferrenciaRepo{
+public class TransferenciaRepositoryImpl implements TransferrenciaRepo{
 
-	private static	List<Trasferencia> baseDatos= new ArrayList<>();
+	private static	List<Transferencia> baseDatos= new ArrayList<>();
 	@Override
-	public void insertar(Trasferencia transferencia) {
-		// TODO Auto-generated method stub
+	public void insertar(Transferencia transferencia) {
 		baseDatos.add(transferencia);
 	}
 
 	@Override
-	public void actualizar(Trasferencia transferencia) {
-		// TODO Auto-generated method stub
+	public void actualizar(Transferencia transferencia) {
 		this.eliminar(transferencia.getNumero());
 		this.insertar(transferencia);
 	}
 
 	@Override
 	public void eliminar(String numero) {
-		// TODO Auto-generated method stub
-		Trasferencia trans = this.seleccionarNumero(numero);
+		Transferencia trans = this.seleccionarNumero(numero);
 		baseDatos.remove(trans);
 	}
 
 	@Override
-	public Trasferencia seleccionarNumero(String numero) {
-    Trasferencia transEncontrado= new Trasferencia();
+	public Transferencia seleccionarNumero(String numero) {
+    Transferencia transEncontrado= new Transferencia();
 		
-		for(Trasferencia trans: baseDatos) {
+		for(Transferencia trans: baseDatos) {
 			//siempre evaluar por el elemento que sabemos no va a ser nulo, para evitar errores
 			//en compilacion
 				 if(numero.equals(trans.getNumero())) {
@@ -46,6 +43,14 @@ public class TransferenciaRepositoryImpl implements TrasferrenciaRepo{
 		
 		return transEncontrado;
 	}
+
+	@Override
+	public List<Transferencia> estadoCuenta() {
+		// TODO Auto-generated method stub
+		return baseDatos;
+	}
+	
+	
 	
 
 }
