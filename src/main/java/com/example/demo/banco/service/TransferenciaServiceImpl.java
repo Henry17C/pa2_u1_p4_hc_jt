@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.banco.repository.CuentaRepo;
 import com.example.demo.banco.repository.TransferrenciaRepo;
 import com.example.demo.banco.repository.modelo.Cuenta;
+import com.example.demo.banco.repository.modelo.Impuesto;
 import com.example.demo.banco.repository.modelo.Transferencia;
 
 @Service()
@@ -25,9 +26,14 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 	@Qualifier("internacional")
 	private MontoDebitarService debitarService;
 	
+	@Autowired
+	private Impuesto impuesto;
+	
 	@Override
 	public void guardar(Transferencia transferencia) {
 		// TODO Auto-generated method stub
+		System.out.println("la trasferencia sev calcula con el iva");
+		System.out.println(impuesto.getIva());
 		this.trasferrenciaRepo.insertar(transferencia);
 	}
 
